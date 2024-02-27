@@ -154,7 +154,7 @@ public class ConnectionActivity extends AppCompatActivity implements ScannerAppE
         Application.sdkHandler.dcssdkEnableAvailableScannersDetection(true);
         Application.sdkHandler.dcssdkEnableBluetoothScannersDiscovery(true);
         Application.sdkHandler.dcssdkSetOperationalMode(DCSSDKDefs.DCSSDK_MODE.DCSSDK_OPMODE_BT_NORMAL);
-        Application.sdkHandler.dcssdkSetOperationalMode(DCSSDKDefs.DCSSDK_MODE.DCSSDK_OPMODE_BT_LE);
+        //Application.sdkHandler.dcssdkSetOperationalMode(DCSSDKDefs.DCSSDK_MODE.DCSSDK_OPMODE_BT_LE);
     }
 
     private void updateBarcodeView(LinearLayout.LayoutParams layoutParams, BarCodeView barCodeView) {

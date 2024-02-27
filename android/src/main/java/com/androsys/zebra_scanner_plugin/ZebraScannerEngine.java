@@ -7,6 +7,7 @@ import com.androsys.zebra_scanner_plugin.application.Application;
 import com.androsys.zebra_scanner_plugin.barcode.BarcodeTypes;
 import com.androsys.zebra_scanner_plugin.helpers.Foreground;
 import com.androsys.zebra_scanner_plugin.helpers.ScannerAppEngine;
+import com.zebra.barcode.sdk.sms.ConfigurationUpdateEvent;
 import com.zebra.scannercontrol.DCSSDKDefs;
 import com.zebra.scannercontrol.DCSScannerInfo;
 import com.zebra.scannercontrol.FirmwareUpdateEvent;
@@ -324,6 +325,10 @@ public class ZebraScannerEngine implements ScannerAppEngine, IDcsSdkApiDelegate 
 
     @Override
     public void dcssdkEventAuxScannerAppeared(DCSScannerInfo newTopology, DCSScannerInfo auxScanner) {
+    }
+
+    @Override
+    public void dcssdkEventConfigurationUpdate(ConfigurationUpdateEvent configurationUpdateEvent) {
     }
 
     @Override
