@@ -51,8 +51,47 @@ to allow the plugin to locate the barcode_scanner_library.aar library.
 
 # Fourth
 
-Add `tools:replace="android:label"` under `application` tag in your **AndroidManifest.xml**, this is
-required because the **barcode_scanner_library.aar** library defines
+Next, in your `**AndroidManifest.xml**` file located at `android/app/src/main/AndroidManifest.xml`:
+
+Add `tools:replace="android:label"` and remove `android:name=${applicationName}` under `application` tag this is
+required because the **barcode_scanner_library.aar** library defines 
 an `android:label="@string/app_name"` which conflicts with your project's label resulting in a *
-Manifest merger failed* error
+Manifest merger failed* error.
+
+Add `xmlns:tools="http://schemas.android.com/tools"` under the `manifest` tag.
+Add the `BLUETOOTH`, `BLUETOOTH_CONNECT` and `BLUETOOTH_SCAN` permission tags.
+
+**Example:**
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    
+    <application
+        android:label="zebra_test_app"
+        tools:replace="android:label"
+    >
+    ...
+    </application>
+</mainfest>
+```
+
+# Permission Management
+
+On android you will need to request for some permissions during runtime otherwise the app will crash.
+The [permission_handler](https://pub.dev/packages/permission_handler) works well for this purpose.
+
+
+```dart
+import 'package:permission_handler/permission_handler.dart';
+
+Future<void> requestScanerConnectPermissions() async {
+    await Permission.bluetoothConnect.request()
+    await Permission.bluetoothScan.request()
+}
+```
+
 
